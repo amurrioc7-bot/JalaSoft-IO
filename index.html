@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jalasoft · Apoyo a decisiones</title>
+<style>
+:root{--navy:#0a0a0b;--navy2:#1f1f23;--green:#e11d2e;--green2:#b91c1c;--bg:#f4f4f5;--card:#fff;--tx:#18181b;--mut:#6b6b73;--ln:#e4e4e7;--warn:#c2410c;--bad:#b91c1c}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);display:flex;min-height:100vh}
+aside{width:236px;background:var(--navy);color:#fff;padding:22px 14px;position:sticky;top:0;height:100vh;flex-shrink:0}
+aside h1{font-size:19px;margin:0 8px 4px;letter-spacing:.2px}aside h1 b{color:var(--green)}aside small{display:block;margin:0 8px 22px;color:#a1a1aa}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;color:#d4d4d8;padding:10px 12px;border-radius:8px;font:inherit;cursor:pointer;margin-bottom:2px}
+nav button:hover{background:var(--navy2)}nav button.on{background:var(--green);color:var(--navy);font-weight:600}
+main{flex:1;padding:28px 34px;max-width:1100px;min-width:0}
+h2{margin:0 0 4px;font-size:25px}.sub{color:var(--mut);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:18px;margin-bottom:18px}
+.card h3{margin:0 0 10px;font-size:16px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:5px 6px;border-bottom:1px solid var(--ln);text-align:left}th{color:var(--mut);font-weight:600;font-size:13px}
+td input{width:100%;min-width:56px;padding:5px 7px;border:1px solid var(--ln);border-radius:6px;font:inherit}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:inherit;cursor:pointer;font-weight:600}.btn:hover{background:var(--navy2)}
+.btn.g{background:var(--green);color:var(--navy)}.btn.g:hover{background:#f0414f}.btn.l{background:#efeff1;color:var(--navy)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}label{font-size:13px;color:var(--mut)}
+.row input,.row select,textarea{padding:7px 9px;border:1px solid var(--ln);border-radius:6px;font:inherit}textarea{width:100%;font-family:ui-monospace,Consolas,monospace;font-size:13px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;background:#efeff1;color:var(--navy)}.tag.s{background:#fff1d6;color:#8a5200}.tag.p{background:#d9f7ec;color:#06694c}
+.kpi{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}.kpi div{flex:1;min-width:140px;background:var(--bg);border-radius:10px;padding:12px}.kpi b{display:block;font-size:22px;color:var(--navy)}.kpi span{font-size:13px;color:var(--mut)}
+.bar{height:10px;background:#efeff1;border-radius:6px;overflow:hidden;min-width:90px}.bar i{display:block;height:100%;background:var(--green2)}.bar i.hi{background:var(--warn)}
+.alert{padding:10px 14px;border-radius:8px;background:#fff1d6;color:#7a4a00;margin:10px 0;font-size:14px}.alert.bad{background:#fde2e2;color:var(--bad)}
+.hide{display:none}.note{font-size:13px;color:var(--mut)}
+@media(max-width:760px){body{flex-direction:column}aside{width:100%;height:auto;position:static}nav{display:flex;flex-wrap:wrap}nav button{width:auto}main{padding:18px}}
+aside{background:linear-gradient(180deg,#0a0a0b,#1f1f23 60%,#0e4a5e)}
+nav button.on{background:linear-gradient(90deg,#e11d2e,#06b6d4)}
+body{background:linear-gradient(160deg,#eef4ff,#f1fbf7 60%,#fff7ed)}
+.card{border-top:4px solid var(--c,#e11d2e);box-shadow:0 4px 14px rgba(11,31,58,.07)}
+.card:nth-of-type(3n+2){--c:#18181b}.card:nth-of-type(3n){--c:#e11d2e}
+.kpi div:nth-child(1){background:#d9f7ec}.kpi div:nth-child(2){background:#dbeafe}.kpi div:nth-child(3){background:#fef3c7}.kpi div:nth-child(4){background:#fce7f3}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:10px;background:linear-gradient(120deg,#0a0a0b,#1f1f23 55%,#b91c1c);color:#fff;border-radius:16px;overflow:hidden;margin-bottom:18px}
+.hero .tx{padding:28px}.hero h2{font-size:30px}.hero p{color:#d3f5ea}
+.cv3d{height:300px;cursor:grab}.hero .cv3d{height:320px}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:18px}
+.gal figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--ln);background:#fff}.gal img{width:100%;height:150px;object-fit:cover;display:block}.gal figcaption{padding:8px 12px;font-size:13px;font-weight:600}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+
+:root{--warn:#e11d2e}
+body{background:#f4f4f5;font-family:Inter,"Segoe UI",system-ui,sans-serif}
+aside{background:linear-gradient(180deg,#000,#18181b);border-right:3px solid #e11d2e;display:flex;flex-direction:column}
+aside .ft{margin-top:auto;padding:12px 8px 0;font-size:11px;color:#71717a;border-top:1px solid #27272a}
+nav button.on{background:#e11d2e;color:#fff}nav button:hover{background:#27272a}
+.btn.g{color:#fff}.btn.g:hover{background:#f0414f}.btn{border-radius:6px}.btn.l{background:#e4e4e7;color:#18181b}
+h2{border-left:5px solid #e11d2e;padding-left:12px}
+.card{border-top:3px solid var(--c,#e11d2e);border-radius:10px}
+.card:nth-of-type(3n+2){--c:#18181b}.card:nth-of-type(3n){--c:#71717a}
+.kpi div:nth-child(n){background:#fff;border:1px solid #e4e4e7;border-left:4px solid #e11d2e}.kpi div:nth-child(even){border-left-color:#18181b}
+.hero{background:linear-gradient(120deg,#000,#18181b 55%,#7f1d1d)}.hero p{color:#fecaca}
+tr:hover td{background:#fafafa}th{text-transform:uppercase;font-size:11px;letter-spacing:.5px}
+input:focus,select:focus,textarea:focus{outline:2px solid #e11d2e;border-color:#e11d2e}
+.tag.p{background:#fde2e2;color:#991b1b}.bar i{background:#18181b}.bar i.hi{background:#e11d2e}
+.cm{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;max-width:460px;font-size:13px;text-align:center;margin:8px 0 16px}.cm div{padding:12px;border-radius:8px}
+@media print{aside,.noprint{display:none}body{display:block;background:#fff}.card{break-inside:avoid;box-shadow:none}}
+</style></head><body>
+<aside><img src="img/logo.png" alt="" style="max-width:150px;margin:0 8px 8px;display:block" onerror="this.style.display='none'"><h1>jala<b>soft</b></h1><small>Apoyo a decisiones · uso interno</small>
+<nav id="nav"></nav><div class="ft"><button class="btn l noprint" style="width:100%;margin-bottom:10px" onclick="print()">Imprimir / PDF</button>v2.0 · Uso interno<br>Datos sintéticos por defecto</div></aside>
+<main id="main"></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),esc=v=>String(v).replace(/"/g,'&quot;'),f=(n,d=1)=>Number(n).toLocaleString('es-BO',{maximumFractionDigits:d});
+const S={
+ eng:[{n:'ING-01',sk:'react,qa',sen:3,h:160,c:14},{n:'ING-02',sk:'dotnet,azure',sen:4,h:160,c:22},{n:'ING-03',sk:'qa,python',sen:2,h:120,c:10},{n:'ING-04',sk:'react,dotnet',sen:2,h:160,c:11},{n:'ING-05',sk:'azure,devops',sen:5,h:140,c:26}],
+ proj:[{n:'PRY-A',sk:'dotnet',sen:2,d:150,p:9},{n:'PRY-B',sk:'qa',sen:1,d:170,p:6},{n:'PRY-C',sk:'azure',sen:4,d:200,p:8}],
+ util:90,
+ types:[{t:'pequeña',cpu:2,ram:4,p:35},{t:'mediana',cpu:4,ram:16,p:90},{t:'grande',cpu:8,ram:32,p:170},{t:'xl',cpu:16,ram:64,p:330}],
+ svc:[{n:'API-1',cpu:10,ram:30,rep:2,cur:'xl',cn:2},{n:'DB-1',cpu:6,ram:40,rep:2,cur:'xl',cn:2},{n:'WEB-1',cpu:3,ram:8,rep:2,cur:'grande',cn:3}],
+ cu:70,csv:'',res:null};
+const TABS=[['home','Resumen'],['eng','1 · Asignación de ingenieros'],['cloud','2 · Optimización cloud'],['err','3 · Predicción de errores'],['src','Fuentes y límites']];
+let cur='home';
+function nav(){$('#nav').innerHTML=TABS.map(([k,l])=>`<button class="${k==cur?'on':''}" onclick="go('${k}')">${l}</button>`).join('')}
+function go(k){cur=k;nav();$('#main').innerHTML=V[k]();if(A[k])A[k]()}
+function tbl(arr,cols,id){return `<table><tr>${cols.map(c=>`<th>${c[1]}</th>`).join('')}<th></th></tr>${arr.map((r,i)=>`<tr>${cols.map(c=>`<td><input value="${esc(r[c[0]])}" ${c[2]?'type="number" step="any"':''} onchange="ed('${id}',${i},'${c[0]}',this.value,${!!c[2]})"></td>`).join('')}<td><button class="btn l" onclick="del('${id}',${i})" title="Quitar">✕</button></td></tr>`).join('')}</table>`}
+function ed(id,i,k,v,num){S[id][i][k]=num?parseFloat(v)||0:v}
+function del(id,i){S[id].splice(i,1);go(cur)}
+function add(id,o){S[id].push(o);go(cur)}
+const V={},A={};
+const PAL=['#e11d2e','#18181b','#f97316','#71717a','#7f1d1d','#fb7185'];
+const PH=(t,a='#1f1f23',b='#e11d2e')=>'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="400" height="220" fill="url(#g)"/><g fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"><circle cx="320" cy="60" r="50"/><rect x="40" y="130" width="90" height="60" rx="8"/><path d="M150 190l50-70 40 40 50-60"/></g><text x="200" y="112" font-family="Segoe UI,sans-serif" font-size="20" fill="#fff" text-anchor="middle">${t}</text></svg>`);
+const IM=(f,t,a,b)=>`<img src="img/${f}" alt="${t}" onerror="this.onerror=null;this.src=PH('${t}','${a}','${b}')">`;
+const svgW=(w,h,i)=>`<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto">${i}</svg>`;
+function bars(lb,se,nm,st){const W=640,H=260,m=44,gw=(W-m-10)/lb.length,k=se.length,tot=lb.map((_,i)=>se.reduce((a,x)=>a+x[i],0)),mx=Math.max(1,...(st?tot:se.flat()))*1.1;let s='';
+ for(let i=0;i<=4;i++){const y=H-30-(H-60)*i/4;s+=`<line x1="${m}" x2="${W-10}" y1="${y}" y2="${y}" stroke="#e4e4e7"/><text x="${m-5}" y="${y+4}" font-size="10" text-anchor="end" fill="#6b6b73">${f(mx*i/4,0)}</text>`}
+ lb.forEach((l,i)=>{let acc=0;const bw=st?gw*.6:gw*.7/k;se.forEach((x,j)=>{const h=(H-60)*x[i]/mx,xx=st?m+i*gw+gw*.2:m+i*gw+gw*.15+j*bw,y=H-30-h-(st?acc:0);if(st)acc+=h;s+=`<rect x="${xx}" y="${y}" width="${bw-(st?0:3)}" height="${h}" rx="3" fill="${PAL[j%6]}"><title>${nm[j]}: ${f(x[i],0)}</title></rect>`});s+=`<text x="${m+i*gw+gw/2}" y="${H-12}" font-size="11" text-anchor="middle" fill="#18181b">${l}</text>`});
+ return svgW(W,H,s)+`<div class="lg">${nm.map((n,j)=>`<span><i style="background:${PAL[j%6]}"></i>${n}</span>`).join('')}</div>`}
+function donut(v,n){const T=v.reduce((a,b)=>a+b,0)||1;let o=0,s='';v.forEach((x,i)=>{const L=x/T*377;s+=`<circle r="60" cx="90" cy="90" fill="none" stroke="${PAL[i%6]}" stroke-width="28" stroke-dasharray="${L} ${377-L}" stroke-dashoffset="${-o}" transform="rotate(-90 90 90)"><title>${n[i]}</title></circle>`;o+=L});
+ return `<div class="row" style="justify-content:center"><svg viewBox="0 0 180 180" style="width:180px"><text x="90" y="88" text-anchor="middle" font-size="11" fill="#6b6b73">Total USD</text><text x="90" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="#0a0a0b">${f(T,0)}</text>${s}</svg><div class="lg" style="flex-direction:column">${n.map((x,i)=>`<span><i style="background:${PAL[i%6]}"></i>${x} · USD ${f(v[i],0)}</span>`).join('')}</div></div>`}
+function xy(o){const W=420,H=280,l=44,b=34,t=10,r=12,X=v=>l+(v-o.x[0])/(o.x[1]-o.x[0])*(W-l-r),Y=v=>H-b-(v-o.y[0])/(o.y[1]-o.y[0])*(H-b-t);let s='';
+ for(let i=0;i<=4;i++){const xv=o.x[0]+(o.x[1]-o.x[0])*i/4,yv=o.y[0]+(o.y[1]-o.y[0])*i/4;s+=`<line x1="${l}" x2="${W-r}" y1="${Y(yv)}" y2="${Y(yv)}" stroke="#e4e4e7"/><text x="${l-5}" y="${Y(yv)+4}" font-size="10" text-anchor="end" fill="#6b6b73">${f(yv,1)}</text><text x="${X(xv)}" y="${H-b+14}" font-size="10" text-anchor="middle" fill="#6b6b73">${f(xv,1)}</text>`}
+ (o.lines||[]).forEach(L=>s+=`<polyline fill="none" stroke="${L.c}" stroke-width="2.5" ${L.d?'stroke-dasharray="5 4"':''} points="${L.p.map(p=>X(p[0])+','+Y(p[1])).join(' ')}"/>`);
+ (o.dots||[]).forEach(d=>s+=`<circle cx="${X(d.x)}" cy="${Y(d.y)}" r="4" fill="${d.c}" fill-opacity=".75"/>`);
+ s+=`<text x="${W/2}" y="${H-2}" font-size="11" text-anchor="middle" fill="#18181b">${o.xl}</text><text x="12" y="${H/2}" font-size="11" fill="#18181b" transform="rotate(-90 12 ${H/2})" text-anchor="middle">${o.yl}</text>`;return svgW(W,H,s)}
+function three(el,mode,d){if(!el)return;if(!window.THREE){el.innerHTML='<p class="note" style="padding:20px;color:inherit">El modelo 3D necesita conexión a internet (three.js).</p>';return}
+ const T=THREE,w=el.clientWidth||400,h=el.clientHeight||300,sc=new T.Scene(),cam=new T.PerspectiveCamera(45,w/h,.1,100),R=new T.WebGLRenderer({antialias:true,alpha:true}),g=new T.Group(),C=n=>new T.Color(['#e11d2e','#ffffff','#f97316','#a1a1aa','#fb7185','#fca5a5'][n%6]);
+ R.setSize(w,h);R.setPixelRatio(Math.min(devicePixelRatio,2));el.innerHTML='';el.appendChild(R.domElement);sc.add(new T.AmbientLight(0xffffff,.7));const L=new T.DirectionalLight(0xffffff,.8);L.position.set(5,8,6);sc.add(L,g);
+ if(mode=='net'){cam.position.set(0,0,7);const ico=new T.IcosahedronGeometry(2.3,0);g.add(new T.LineSegments(new T.WireframeGeometry(ico),new T.LineBasicMaterial({color:0xe11d2e})));const p=ico.attributes.position,seen={};let n=0;
+  for(let i=0;i<p.count;i++){const k=[p.getX(i),p.getY(i),p.getZ(i)].map(v=>v.toFixed(2)).join();if(seen[k])continue;seen[k]=1;const m=new T.Mesh(new T.SphereGeometry(.22,20,20),new T.MeshStandardMaterial({color:C(n),emissive:C(n),emissiveIntensity:.35}));n++;m.position.set(p.getX(i),p.getY(i),p.getZ(i));g.add(m)}
+  g.add(new T.Mesh(new T.OctahedronGeometry(.9),new T.MeshStandardMaterial({color:0xf4f4f5,flatShading:true})))}
+ else{cam.position.set(0,3,9);cam.lookAt(0,0,0);g.rotation.x=.25;const mx=Math.max(1,...d.map(r=>Math.max(r[1],r[2])));
+  d.forEach((r,i)=>[1,2].forEach(j=>{const hh=Math.max(.05,r[j]/mx*4),m=new T.Mesh(new T.BoxGeometry(.7,hh,.7),new T.MeshStandardMaterial({color:j==1?0xe11d2e:0x18181b}));m.position.set((i-(d.length-1)/2)*2+(j==1?-.45:.45),hh/2-2,0);g.add(m)}));
+  const gr=new T.GridHelper(10,10,0xa1a1aa,0xe4e4e7);gr.position.y=-2;g.add(gr)}
+ R.domElement.addEventListener('pointermove',e=>{if(e.buttons&1)g.rotation.y+=e.movementX*.01});
+ (function loop(){if(!el.isConnected)return;g.rotation.y+=.006;R.render(sc,cam);requestAnimationFrame(loop)})()}
+const sigCurve=()=>{const c=[];for(let z=-6;z<=6;z+=.25)c.push([z,1/(1+Math.exp(-z))]);return c};
+function engCharts(r,sc){const cp=S.proj.map(p=>S.eng.reduce((a,e)=>a+(r.H[e.n+'|'+p.n]||0)*e.c,0));
+ return `<div class="g2"><div class="card"><h3>Horas por ingeniero y proyecto</h3>${bars(S.eng.map(e=>e.n),S.proj.map(p=>S.eng.map(e=>r.H[e.n+'|'+p.n]||0)),S.proj.map(p=>p.n),1)}</div><div class="card"><h3>Costo por proyecto</h3>${donut(cp,S.proj.map(p=>p.n))}</div></div>
+ <div class="card"><h3>Costo según escenario de demanda (USD)</h3>${bars(sc.map(x=>x[0].split(' ')[0]),[sc.map(x=>x[1].cost)],['Costo'])}</div>`}
+function cloudCharts(rows){return `<div class="g2"><div class="card"><h3>Costo actual vs recomendado (USD/mes)</h3>${bars(rows.map(r=>r[0].n),[rows.map(r=>r[1]),rows.map(r=>r[2]?r[2].c:0)],['Actual','Recomendado'])}</div><div class="card"><h3>Vista 3D · arrastra para girar</h3><div id="c3d" class="cv3d"></div><div class="lg"><span><i style="background:#e11d2e"></i>Actual</span><span><i style="background:#18181b"></i>Recomendado</span></div></div></div>`}
+function cloudCost(u){return S.svc.reduce((a,s)=>{let b=Infinity;S.types.forEach(t=>{if(!t.cpu||!t.ram)return;b=Math.min(b,Math.max(s.rep,Math.ceil(Math.max(s.cpu/(t.cpu*u),s.ram/(t.ram*u))))*t.p)});return a+(b==Infinity?0:b)},0)}
+function sensCard(){const pts=[];for(let u=40;u<=95;u+=5)pts.push([u,cloudCost(u/100)]);const mx=Math.max(1,...pts.map(q=>q[1]))*1.1;
+ return `<div class="card"><h3>Sensibilidad: costo mensual según el uso máximo permitido</h3>${xy({lines:[{p:pts,c:'#e11d2e'}],dots:[{x:Math.min(95,Math.max(40,S.cu)),y:cloudCost(S.cu/100),c:'#18181b'}],x:[40,95],y:[0,mx],xl:'Uso máximo permitido (%)',yl:'USD por mes'})}<p class="note">Menos uso máximo = más margen de seguridad, pero más costo. El punto negro es el valor que elegiste.</p></div>`}
+function errCharts(pr,yt){const P=yt.filter(Boolean).length,N=yt.length-P,ts=[...new Set([...pr,0,1.01])].sort((a,b)=>b-a);
+ const roc=ts.map(t=>{let tp=0,fp=0;pr.forEach((q,i)=>{if(q>=t){yt[i]?tp++:fp++}});return[N?fp/N:0,P?tp/P:0]});
+ const dots=pr.map((q,i)=>({x:Math.max(-6,Math.min(6,Math.log(Math.max(q,1e-6)/Math.max(1-q,1e-6)))),y:q,c:yt[i]?'#e11d2e':'#18181b'}));
+ return `<div class="g2"><div class="card"><h3>Curva ROC</h3>${xy({lines:[{p:[[0,0],[1,1]],c:'#a1a1aa',d:1},{p:roc,c:'#e11d2e'}],x:[0,1],y:[0,1],xl:'Falsos positivos (tasa)',yl:'Verdaderos positivos (tasa)'})}<p class="note"><b>Cómo leerla:</b> mide qué tan bien separa los casos con problema de los que no. La línea punteada es adivinar al azar; mientras más se pegue la línea azul a la esquina superior izquierda, mejor es el modelo.</p></div>
+ <div class="card"><h3>Modelo logístico y casos de prueba</h3>${xy({lines:[{p:sigCurve(),c:'#18181b'}],dots,x:[-6,6],y:[0,1],xl:'Puntaje de riesgo z',yl:'Probabilidad de incidente'})}<p class="note"><b>Cómo leerlo:</b> cada punto es un caso de prueba. Cuanto más arriba, más riesgo le dio el modelo. Lo ideal: puntos rojos arriba y negros abajo.</p><div class="lg"><span><i style="background:#e11d2e"></i>Hubo incidente</span><span><i style="background:#18181b"></i>Sin incidente</span></div></div></div>`}
+A.home=()=>three($('#h3d'),'net');
+
+V.home=()=>`<div class="hero"><div class="tx"><h2>Apoyo a decisiones</h2><p>Tres modelos que corren en tu navegador. Nada se envía a ningún servidor y nada se ejecuta en sistemas reales.</p><div class="row"><button class="btn g" onclick="go('eng')">Asignar ingenieros</button><button class="btn l" onclick="go('cloud')">Optimizar cloud</button></div></div><div id="h3d" class="cv3d"></div></div>
+<div class="kpi"><div><b>${S.eng.length}</b><span>Ingenieros registrados</span></div><div><b>${S.proj.length}</b><span>Proyectos activos</span></div><div><b>${S.svc.length}</b><span>Servicios cloud</span></div><div><b>USD ${f(S.svc.reduce((a,s)=>{const t=S.types.find(t=>t.t==s.cur);return a+(t?t.p*s.cn:0)},0),0)}</b><span>Gasto cloud mensual actual</span></div></div>
+<div class="gal"><figure>${IM('oficina.jpg','Oficinas Jalasoft','#0a0a0b','#e11d2e')}<figcaption>Nuestra oficina</figcaption></figure><figure>${IM('equipo.jpg','Equipo de ingenieros','#18181b','#b91c1c')}<figcaption>Equipo de ingeniería</figcaption></figure><figure>${IM('tecnologia.jpg','Tecnología y cloud','#7f1d1d','#0a0a0b')}<figcaption>Tecnología y cloud</figcaption></figure></div>
+<div class="g2"><div class="card"><h3>Modelos matemáticos usados</h3><p><span class="tag p">1</span> <b>Asignación:</b> heurística voraz que minimiza el costo Σ horas × costo/hora, sujeta a habilidad, seniority y utilización máxima.</p><p><span class="tag">2</span> <b>Cloud:</b> para cada servicio, n = máx(réplicas, ⌈máx(CPU/(vCPU·u), RAM/(GB·u))⌉) y se elige el menor n × precio.</p><p><span class="tag s">3</span> <b>Errores:</b> regresión logística, P(incidente) = 1 / (1 + e<sup>−z</sup>), con z combinación lineal de las señales.</p></div>
+<div class="card"><h3>Función logística (modelo 3)</h3>${xy({lines:[{p:sigCurve(),c:'#18181b'},{p:[[-6,.5],[6,.5]],c:'#e11d2e',d:1}],x:[-6,6],y:[0,1],xl:'Puntaje de riesgo z',yl:'Probabilidad'})}<p class="note"><b>Cómo leerla:</b> a más señales de riesgo (derecha), mayor probabilidad de problema (arriba). Pasa de la línea naranja (50 %) y el modelo avisa "riesgo alto".</p></div></div>
+<div class="card"><h3>Cómo usarlo</h3><p>Cada módulo parte de <span class="tag s">SINTÉTICO</span> datos de demostración. Reemplázalos con datos <span class="tag p">INTERNO_AUTORIZADO</span> que entregue la gerencia. Las cifras públicas de ASFI/BBV sirven de contexto financiero; no contienen horas, facturas cloud ni errores de clientes.</p>
+<div class="row"><button class="btn g" onclick="go('eng')">Asignar ingenieros</button><button class="btn" onclick="go('cloud')">Optimizar cloud</button><button class="btn" onclick="go('err')">Predecir errores</button></div></div>
+<div class="alert">No se asume que Jalasoft preste servicios a Visa ni a bancos bolivianos. El módulo 3 trabaja solo con datos autorizados, anonimizados y sin tarjetas, credenciales ni secretos.</div>`;
+V.eng=()=>`<h2>Asignación de ingenieros</h2><p class="sub">Asigna horas a proyectos por prioridad, habilidad obligatoria y seniority mínimo, con el menor costo. <span class="tag s">SINTÉTICO</span></p>
+<div class="card"><h3>Ingenieros (habilidades separadas por coma)</h3>${tbl(S.eng,[['n','ID anonimizado'],['sk','Habilidades'],['sen','Seniority (1-5)',1],['h','Horas disponibles/mes',1],['c','Costo/hora (USD)',1]],'eng')}<div class="row"><button class="btn l" onclick="add('eng',{n:'ING-'+(S.eng.length+1),sk:'',sen:1,h:160,c:0})">+ Ingeniero</button></div></div>
+<div class="card"><h3>Proyectos</h3>${tbl(S.proj,[['n','ID'],['sk','Habilidad obligatoria'],['sen','Seniority mín.',1],['d','Horas requeridas',1],['p','Prioridad (1-10)',1]],'proj')}<div class="row"><button class="btn l" onclick="add('proj',{n:'PRY-'+(S.proj.length+1),sk:'',sen:1,d:100,p:5})">+ Proyecto</button></div></div>
+<div class="row"><label>Utilización máxima % <input type="number" id="ut" value="${S.util}" style="width:80px" onchange="S.util=+this.value"></label><button class="btn g" onclick="runEng()">Calcular asignación</button></div><div id="out"></div>`;
+function solve(fac){const cap=S.util/100,E=S.eng.map(e=>({...e,u:0})),H={},gaps=[];let cost=0;
+ [...S.proj].sort((a,b)=>b.p-a.p).forEach(p=>{let need=p.d*fac;const sk=p.sk.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+  E.filter(e=>e.sen>=p.sen&&sk.every(s=>e.sk.toLowerCase().split(',').map(x=>x.trim()).includes(s))).sort((a,b)=>a.c-b.c).forEach(e=>{const g=Math.min(need,Math.max(0,e.h*cap-e.u));if(g>0){H[e.n+'|'+p.n]=g;e.u+=g;need-=g;cost+=g*e.c}});
+  if(need>0.01)gaps.push([p.n,need,p.d*fac])});return{E,H,gaps,cost}}
+function runEng(){const r=solve(1),sc=[['Bajo (−20 % demanda)',.8],['Base',1],['Alto (+25 % demanda)',1.25]].map(([l,x])=>[l,solve(x)]);
+ $('#out').innerHTML=`<div class="card"><h3>Resultado base</h3><div class="kpi"><div><b>USD ${f(r.cost,0)}</b><span>Costo estimado</span></div><div><b>${f(Object.values(r.H).reduce((a,b)=>a+b,0),0)} h</b><span>Horas asignadas</span></div><div><b>${r.gaps.length}</b><span>Proyectos con déficit</span></div></div>
+ ${r.gaps.map(g=>`<div class="alert bad">${g[0]}: faltan ${f(g[1],0)} h de ${f(g[2],0)}. Causa posible: habilidad o seniority ausente, o utilización máxima alcanzada.</div>`).join('')}
+ <table><tr><th>Ingeniero</th>${S.proj.map(p=>`<th>${p.n}</th>`).join('')}<th>Utilización</th></tr>${r.E.map(e=>{const u=e.u/e.h*100;return`<tr><td>${e.n}</td>${S.proj.map(p=>`<td>${r.H[e.n+'|'+p.n]?f(r.H[e.n+'|'+p.n],0):'–'}</td>`).join('')}<td><div class="bar"><i class="${u>S.util?'hi':''}" style="width:${Math.min(u,100)}%"></i></div>${f(u,0)} %</td></tr>`}).join('')}</table></div>
+ ${engCharts(r,sc)}
+ <div class="card"><h3>Escenarios de demanda</h3><table><tr><th>Escenario</th><th>Costo (USD)</th><th>Déficit (h)</th></tr>${sc.map(([l,s])=>`<tr><td>${l}</td><td>${f(s.cost,0)}</td><td>${f(s.gaps.reduce((a,g)=>a+g[1],0),0)}</td></tr>`).join('')}</table>
+ <p class="note">Método: heurística voraz (prioridad alta primero, ingeniero más barato que cumpla requisitos). Es explicable y rápida; no garantiza el óptimo global de un modelo MILP. Supuestos: horas divisibles, costo interno fijo por hora.</p>
+ <div class="row"><button class="btn l" onclick="dl('asignacion.json',JSON.stringify({asignacion:r.H,costo:r.cost,deficit:r.gaps,origen:'SINTETICO/CALCULADO'},null,2))">Exportar JSON</button></div></div>`}
+V.cloud=()=>`<h2>Optimización cloud</h2><p class="sub">Elige el tipo de instancia de menor costo que cubra CPU y RAM con margen. <span class="tag s">SINTÉTICO</span></p>
+<div class="card"><h3>Catálogo de instancias (usa los precios de tu proveedor)</h3>${tbl(S.types,[['t','Tipo'],['cpu','vCPU',1],['ram','RAM GB',1],['p','USD/mes',1]],'types')}<div class="row"><button class="btn l" onclick="add('types',{t:'nuevo',cpu:2,ram:4,p:0})">+ Tipo</button></div></div>
+<div class="card"><h3>Servicios (demanda pico)</h3>${tbl(S.svc,[['n','Servicio'],['cpu','vCPU necesarias',1],['ram','RAM GB necesaria',1],['rep','Réplicas mín.',1],['cur','Tipo actual'],['cn','Cantidad actual',1]],'svc')}<div class="row"><button class="btn l" onclick="add('svc',{n:'SVC-'+(S.svc.length+1),cpu:2,ram:4,rep:2,cur:'pequeña',cn:2})">+ Servicio</button></div></div>
+<div class="row"><label>Uso máximo permitido % <input type="number" id="cu" value="${S.cu}" style="width:80px" onchange="S.cu=+this.value"></label><button class="btn g" onclick="runCloud()">Calcular recomendación</button></div><div id="out"></div>`;
+function runCloud(){const u=S.cu/100;let cA=0,cR=0;const rows=S.svc.map(s=>{const t0=S.types.find(t=>t.t==s.cur),a=t0?t0.p*s.cn:0;let best=null;
+ S.types.forEach(t=>{if(!t.cpu||!t.ram)return;const n=Math.max(s.rep,Math.ceil(Math.max(s.cpu/(t.cpu*u),s.ram/(t.ram*u))));const c=n*t.p;if(!best||c<best.c)best={t:t.t,n,c}});cA+=a;cR+=best?best.c:0;return[s,a,best,t0]});
+ $('#out').innerHTML=`<div class="card"><h3>Recomendación (para revisión humana)</h3><div class="kpi"><div><b>USD ${f(cA,0)}</b><span>Costo mensual actual</span></div><div><b>USD ${f(cR,0)}</b><span>Costo recomendado</span></div><div><b>${cA?f((cA-cR)/cA*100,0):0} %</b><span>Ahorro estimado</span></div></div>
+ <table><tr><th>Servicio</th><th>Actual</th><th>Recomendado</th><th>Costo</th></tr>${rows.map(([s,a,b,t0])=>`<tr><td>${s.n}</td><td>${s.cn} × ${s.cur}${t0?'':' (tipo no encontrado)'} · USD ${f(a,0)}</td><td>${b?b.n+' × '+b.t:'–'}</td><td>USD ${b?f(b.c,0):'–'}</td></tr>`).join('')}</table>
+ <p class="note">Restricciones usadas: CPU, RAM, réplicas mínimas y uso máximo. No incluye latencia, SLA, RTO/RPO, red, respaldos ni licencias: agrégalos con datos reales de facturación antes de decidir. La app no cambia nada en AWS, Azure ni GCP.</p>
+ <div class="row"><button class="btn l" onclick="dl('cloud.json',JSON.stringify({actual:${cA},recomendado:${cR},origen:'SINTETICO/CALCULADO'},null,2))">Exportar JSON</button></div></div>${cloudCharts(rows)}${sensCard()}`;three($('#c3d'),'bars',rows.map(([s,a,b])=>[s.n,a,b?b.c:0]))}
+V.err=()=>`<h2>Predicción de errores</h2><p class="sub">Regresión logística con validación temporal. Pega un CSV autorizado y anonimizado: la última columna es <b>incidente</b> (0/1) y las filas van en orden cronológico.</p>
+<div class="card"><h3>¿Qué hace esta herramienta? (explicado fácil)</h3>
+<p>Imagina que revisas el historial de cada entrega de software: cuántos cambios tuvo, cuántas pruebas fallaron, qué tan lento respondía… y si al final <b>hubo un problema o no</b>. Con el tiempo notas patrones: <i>"cuando hay muchos cambios y muchas pruebas fallidas, suele haber problemas"</i>.</p>
+<p>Esta herramienta hace lo mismo, pero con números: aprende esos patrones de tus datos pasados y te dice <b>qué probabilidad hay de que una entrega nueva tenga un problema</b>. Es como un semáforo de riesgo: verde (bajo), amarillo (medio), rojo (alto).</p>
+<div class="kpi"><div><b>1. Cargas datos</b><span>Una tabla con una fila por entrega y una columna final con 1 (hubo problema) o 0 (no hubo).</span></div><div><b>2. Aprende</b><span>Usa el 70 % más antiguo de las filas para encontrar los patrones.</span></div><div><b>3. Se examina</b><span>Predice el 30 % más reciente, que no vio, y compara con lo que pasó de verdad.</span></div><div><b>4. Te avisa</b><span>Escribes los datos de un caso nuevo y te da su probabilidad de riesgo.</span></div></div>
+<p class="note">Si no tienes datos todavía, pulsa <b>Cargar datos sintéticos</b>: son inventados, solo para ver cómo funciona.</p></div>
+<div class="card"><div class="row"><button class="btn l" onclick="demo()">Cargar datos sintéticos</button><input type="file" id="fl" accept=".csv,.txt" class="hide"><button class="btn l" onclick="$('#fl').click()">Abrir CSV</button><span id="orig" class="tag s">SINTÉTICO</span></div>
+<textarea id="csv" rows="7" placeholder="cambios,tests_fallidos,cobertura,latencia_p95,incidente&#10;12,3,0.61,420,1">${S.csv}</textarea>
+<div class="row"><button class="btn g" onclick="train()">Entrenar y validar</button></div><p class="note">No pegues números de tarjeta, CVV, credenciales ni datos personales.</p></div><div id="out"></div>`;
+A.err=()=>{$('#fl').onchange=e=>{const r=new FileReader();r.onload=()=>{$('#csv').value=r.result;$('#orig').textContent='INTERNO_AUTORIZADO';$('#orig').className='tag p'};r.readAsText(e.target.files[0])}};
+function demo(){let s=7;const R=()=>(s=(s*16807)%2147483647)/2147483647,L=['cambios,tests_fallidos,cobertura,latencia_p95,incidente'];
+ for(let i=0;i<160;i++){const c=Math.round(2+R()*25),t=Math.round(R()*R()*8),cv=+(0.4+R()*0.55).toFixed(2),l=Math.round(150+R()*500),z=-3.2+.11*c+.35*t-3*cv+.004*l;L.push([c,t,cv,l,R()<1/(1+Math.exp(-z))?1:0].join(','))}
+ $('#csv').value=L.join('\n');$('#orig').textContent='SINTÉTICO';$('#orig').className='tag s'}
+const sig=z=>1/(1+Math.exp(-z));
+function train(){const L=$('#csv').value.trim().split(/\r?\n/).map(l=>l.split(',').map(x=>x.trim()));if(L.length<30){$('#out').innerHTML='<div class="alert bad">Datos insuficientes: se necesitan al menos 30 filas con cabecera.</div>';return}
+ const H=L.shift(),X=L.map(r=>r.slice(0,-1).map(Number)),Y=L.map(r=>+r[r.length-1]);if(X.some(r=>r.some(isNaN))||Y.some(y=>y!==0&&y!==1)){$('#out').innerHTML='<div class="alert bad">Hay valores no numéricos o la última columna no es 0/1.</div>';return}
+ const cut=Math.floor(X.length*.7),p=H.length-1,mu=[],sd=[];for(let j=0;j<p;j++){const c=X.slice(0,cut).map(r=>r[j]),m=c.reduce((a,b)=>a+b)/cut;mu[j]=m;sd[j]=Math.sqrt(c.reduce((a,b)=>a+(b-m)**2,0)/cut)||1}
+ const Z=X.map(r=>r.map((v,j)=>(v-mu[j])/sd[j])),w=Array(p).fill(0);let b=0;
+ for(let it=0;it<800;it++){const g=Array(p).fill(0);let gb=0;for(let i=0;i<cut;i++){const e=sig(b+Z[i].reduce((a,v,j)=>a+v*w[j],0))-Y[i];gb+=e;Z[i].forEach((v,j)=>g[j]+=e*v)}b-=.3*gb/cut;for(let j=0;j<p;j++)w[j]-=.3*(g[j]/cut+.01*w[j])}
+ const pr=Z.slice(cut).map(r=>sig(b+r.reduce((a,v,j)=>a+v*w[j],0))),yt=Y.slice(cut);let tp=0,fp=0,fn=0,tn=0;pr.forEach((q,i)=>{const h=q>=.5;if(h&&yt[i])tp++;else if(h)fp++;else if(yt[i])fn++;else tn++});
+ const pc=tp+fp?tp/(tp+fp):0,rc=tp+fn?tp/(tp+fn):0,f1=pc+rc?2*pc*rc/(pc+rc):0;let auc=0,pos=0,neg=0;pr.forEach((q,i)=>{if(yt[i]){pos++;pr.forEach((q2,k)=>{if(!yt[k])auc+=q>q2?1:q==q2?.5:0})}else neg++});auc=pos&&neg?auc/(pos*neg):NaN;
+ S.res={mu,sd,w,b,H};const mx=Math.max(...w.map(Math.abs))||1;
+ $('#out').innerHTML=`<div class="card"><h3>Desempeño en periodo posterior (30 % final)</h3><div class="kpi"><div><b>${f(pc*100,0)} %</b><span>Precisión</span></div><div><b>${f(rc*100,0)} %</b><span>Recall</span></div><div><b>${f(f1,2)}</b><span>F1</span></div><div><b>${isNaN(auc)?'n/d':f(auc,2)}</b><span>ROC-AUC</span></div></div>
+ <p class="note">Entrenamiento: ${cut} filas · Prueba: ${X.length-cut} · Falsos positivos: ${fp} · Falsos negativos: ${fn}${pos<5?' · Pocos incidentes en la prueba: métricas poco fiables.':''}</p>
+ <h3>Matriz de confusión (periodo de prueba)</h3><div class="cm"><div></div><div><b>Predijo: habrá problema</b></div><div><b>Predijo: no habrá</b></div><div><b>Sí hubo problema</b></div><div style="background:#18181b;color:#fff"><b>${tp}</b><br>Detectado</div><div style="background:#fde2e2;color:#991b1b"><b>${fn}</b><br>Se escapó</div><div><b>No hubo problema</b></div><div style="background:#fde2e2;color:#991b1b"><b>${fp}</b><br>Falsa alarma</div><div style="background:#e4e4e7"><b>${tn}</b><br>Acierto sin riesgo</div></div>
+ <h3>¿Qué tan bien funciona? En palabras simples</h3><ul>
+ <li><b>Precisión ${f(pc*100,0)} %:</b> de cada 100 veces que el modelo avisó "habrá problema", acertó en ${f(pc*100,0)}. El resto fueron falsas alarmas.</li>
+ <li><b>Recall ${f(rc*100,0)} %:</b> de cada 100 problemas reales, el modelo logró detectar ${f(rc*100,0)}. Los demás se le escaparon.</li>
+ <li><b>F1 ${f(f1,2)}:</b> una sola nota que mezcla precisión y recall (0 = malo, 1 = perfecto).</li>
+ <li><b>ROC-AUC ${isNaN(auc)?'n/d':f(auc,2)}:</b> si le muestras un caso con problema y otro sin problema, acierta cuál es más riesgoso ${isNaN(auc)?'':f(auc*100,0)+' %'} de las veces. 50 % equivale a lanzar una moneda; 100 % es perfecto.</li></ul>
+ <h3>Señales asociadas con mayor riesgo</h3><p class="note">Las barras <b style="color:#e11d2e">rojas</b> son señales que suben el riesgo cuando aumentan; las <b style="color:#16a34a">verdes</b> lo bajan. Mientras más larga la barra, más pesa esa señal.</p><table>${H.slice(0,-1).map((h,j)=>[h,w[j]]).sort((a,c)=>Math.abs(c[1])-Math.abs(a[1])).map(([h,v])=>`<tr><td>${h}</td><td style="width:50%"><div class="bar"><i class="${v<0?'':'hi'}" style="width:${Math.abs(v)/mx*100}%;${v<0?'background:#16a34a':''}"></i></div></td><td>${v>0?'↑ riesgo':'↓ riesgo'}</td></tr>`).join('')}</table>
+ <p class="note">Es asociación estadística, no causalidad. Úsalo para priorizar revisiones, no como única decisión.</p></div>
+ ${errCharts(pr,yt)}<div class="card"><h3>Estimar riesgo de un caso nuevo</h3><p class="note">Cambia los números de abajo por los de una entrega real y pulsa Estimar: el modelo te dirá qué probabilidad tiene de fallar.</p><div class="row">${H.slice(0,-1).map((h,j)=>`<label>${h} <input type="number" step="any" class="nv" value="${f(mu[j],2).replace(',','.')}" style="width:100px"></label>`).join('')}<button class="btn g" onclick="pred()">Estimar</button></div><div id="pr"></div></div>`}
+function pred(){const r=S.res,v=[...document.querySelectorAll('.nv')].map(i=>+i.value),q=sig(r.b+v.reduce((a,x,j)=>a+(x-r.mu[j])/r.sd[j]*r.w[j],0));
+ $('#pr').innerHTML=`<div class="alert ${q>.6?'bad':''}">Probabilidad estimada de incidente: <b>${f(q*100,0)} %</b> · Riesgo ${q>.6?'alto':q>.3?'medio':'bajo'}. Revisión humana recomendada.</div>`}
+V.src=()=>`<h2>Fuentes y límites</h2><p class="sub">Qué dato es de dónde, y qué no se debe afirmar.</p>
+<div class="card"><h3>Origen de cada dato</h3><p><span class="tag p">PUBLICO_VERIFICADO</span> ASFI, BBV, prospectos, estados financieros. <span class="tag p">INTERNO_AUTORIZADO</span> datos que entrega la gerencia. <span class="tag s">SINTÉTICO</span> demostración. <span class="tag">CALCULADO</span> salida de los modelos. <span class="tag">ESTIMADO</span> supuestos.</p></div>
+<div class="card"><h3>Lo que la gerencia debe aportar</h3><table><tr><th>Módulo</th><th>Datos necesarios</th></tr><tr><td>1</td><td>Disponibilidad, habilidades, seniority y costo por hora de cada ingeniero; horas, fechas y prioridad de cada proyecto.</td></tr><tr><td>2</td><td>Facturas cloud, uso de CPU y RAM, latencia, SLA, RTO/RPO, presupuesto y precios del proveedor.</td></tr><tr><td>3</td><td>Tickets, defectos de QA, incidentes y despliegues autorizados y anonimizados.</td></tr></table></div>
+<div class="card"><h3>Glosario</h3><table><tr><th>Término</th><th>Significado</th></tr><tr><td>Seniority</td><td>Nivel de experiencia del ingeniero (1 = junior, 5 = experto).</td></tr><tr><td>Utilización</td><td>Porcentaje de las horas disponibles que se asigna a proyectos.</td></tr><tr><td>Heurística voraz</td><td>Método rápido que elige la mejor opción en cada paso; da buenos resultados, no siempre el mejor posible.</td></tr><tr><td>vCPU / RAM</td><td>Capacidad de procesamiento y memoria de un servidor.</td></tr><tr><td>Réplica</td><td>Copia de un servicio que evita caídas si una falla.</td></tr><tr><td>Regresión logística</td><td>Modelo que convierte señales en una probabilidad entre 0 % y 100 %.</td></tr><tr><td>Falsa alarma / se escapó</td><td>El modelo avisó y no pasó nada / pasó algo y el modelo no avisó.</td></tr><tr><td>SLA, RTO, RPO</td><td>Disponibilidad prometida, tiempo máximo para recuperarse y datos máximos que se aceptan perder.</td></tr></table></div>
+<div class="card"><h3>Datos públicos útiles como contexto</h3><p>Sirven de ancla financiera agregada (cifras en miles de bolivianos): servicio de deuda de los bonos, márgenes históricos. Descarga los PDF desde ASFI y la BBV y guárdalos en tu propio almacenamiento. Las rutas directas pueden cambiar.</p></div>`;
+function dl(n,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download=n;a.click()}
+go('home');
+</script></body></html>
